@@ -3,7 +3,7 @@
 [![pub package](https://img.shields.io/badge/pub-0.2.1-brightgreen)](https://pub.dev/packages/better_polls)
 
 
-[GitHub](https://github.com/areteenterprises/better_polls)
+[GitHub](https://github.com/tjcampanella/better_polls)
 
 ## ScreenShots
 
@@ -88,7 +88,7 @@ viewType: PollsType.readOnly
 ```
 
 
-## Why we forked the orginal polls package
+## Why we forked the original polls package
 
 We initially forked the package to update the package for Flutter 3, after the orignal package was not updated for months. 
 After diving into the code, we noticed many design issues and it gave us even more of a reason to fork the package.
