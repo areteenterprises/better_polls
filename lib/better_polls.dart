@@ -369,7 +369,7 @@ class _PollsState extends State<Polls> {
                             : widget.pollStyle)
                   ],
                 ),
-                linearStrokeCap: LinearStrokeCap.roundAll,
+                barRadius: const Radius.circular(16),
                 progressColor: isHighest
                     ? widget.leadingBackgroundColor
                     : widget.onVoteBackgroundColor,
@@ -406,6 +406,7 @@ class _PollsState extends State<Polls> {
               margin: const EdgeInsets.fromLTRB(3, 3, 10, 3),
               width: double.infinity,
               child: LinearPercentIndicator(
+                barRadius: const Radius.circular(16),
                 animation: true,
                 lineHeight: 38.0,
                 animationDuration: 500,
@@ -437,7 +438,6 @@ class _PollsState extends State<Polls> {
                     )
                   ],
                 ),
-                linearStrokeCap: LinearStrokeCap.roundAll,
                 progressColor: isHighest
                     ? widget.leadingBackgroundColor
                     : widget.onVoteBackgroundColor,
