@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Made padding consistent across poll types. 
+
 ## 1.0.1
 
 * Fixed deprecated use of LinearStrokeCap.
