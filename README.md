@@ -1,9 +1,9 @@
 # Polls
 
-[![pub package](https://img.shields.io/badge/pub-0.2.1-brightgreen)](https://pub.dev/packages/polls)
+[![pub package](https://img.shields.io/badge/pub-0.2.1-brightgreen)](https://pub.dev/packages/better_polls)
 
 
-[GitHub](https://github.com/samuelezedi/polls)
+[GitHub](https://github.com/areteenterprises/better_polls)
 
 ## ScreenShots
 
@@ -17,7 +17,7 @@
 Basic:
 
 ```dart
-import 'package:polls/polls.dart';
+import 'package:better_polls/better_polls.dart';
 ```
 
 ```dart
@@ -30,17 +30,17 @@ Polls(
         Polls.options(title: 'Mogadishu', value: option4),
         ],
         question: Text('What is the capital of Egypt'),
-        currentUser: this.user,
-        creatorID: this.creator,
+        currentUser: user,
+        creatorID: creator,
         voteData: usersWhoVoted,
-        userChoice: usersWhoVoted[this.user],
+        userChoice: usersWhoVoted[user],
         onVoteBackgroundColor: Colors.blue,
         leadingBackgroundColor: Colors.blue,
         backgroundColor: Colors.white,
         onVote: (choice) {
 
             setState(() {
-              this.usersWhoVoted[this.user] = choice;
+              usersWhoVoted[user] = choice;
             });
             if (choice == 1) {
             setState(() {
@@ -88,16 +88,10 @@ viewType: PollsType.readOnly
 ```
 
 
-## Why I made this plugin
+## Why we forked the orginal polls package
 
-Apparently, I have built 2 apps that required user voting processes, twice I had to implement same code on different apps.
-I also had to share the code with a friend, well I thought it would not be a bad idea to create a package off it, cause at this
-time there was no polls widget package on pub.dev
-
-### kindly follow on github
-[github](https://github.com/samuelezedi)
-
-## Kindly follow me on
-[twitter](https://twitter.com/samuelezedi)
-[medium](https://medium.com/@samuelezedi)
-[instagram](https://instagram.com/samuelezedi)
+We initially forked the package to update the package for Flutter 3, after the orignal package was not updated for months. 
+After diving into the code, we noticed many design issues and it gave us even more of a reason to fork the package.
+Our version now includes various improvements on structure and overall code cleanliness. Some of the enhancements, include
+reduction in line count from 1500 to 500, remove redundant code, add ability to add unlimited polls, and overall maintainability 
+improvements.

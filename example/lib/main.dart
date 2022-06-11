@@ -1,13 +1,11 @@
-
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:polls/polls.dart';
+import 'package:better_polls/better_polls.dart';
 
-
-
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -16,19 +14,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PollView(),
+      home: const PollView(),
     );
   }
 }
 
-
 class PollView extends StatefulWidget {
+  const PollView({Key key}) : super(key: key);
+
   @override
   _PollViewState createState() => _PollViewState();
 }
 
 class _PollViewState extends State<PollView> {
-
   double option1 = 1.0;
   double option2 = 0.0;
   double option3 = 1.0;
@@ -39,13 +37,18 @@ class _PollViewState extends State<PollView> {
   double option8 = 1.0;
 
   String user = "king@mail.com";
-  Map usersWhoVoted = {'sam@mail.com': 3, 'mike@mail.com' : 4, 'john@mail.com' : 1, 'kenny@mail.com' : 1};
+  Map<String, int> usersWhoVoted = {
+    'sam@mail.com': 3,
+    'mike@mail.com': 4,
+    'john@mail.com': 1,
+    'kenny@mail.com': 1
+  };
   String creator = "eddy@mail.com";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SafeArea(
         child: Polls(
           children: [
             // This cannot be less than 2, else will throw an exception
@@ -58,18 +61,17 @@ class _PollViewState extends State<PollView> {
             Polls.options(title: 'Ethiopia', value: option7),
             Polls.options(title: 'Italy', value: option8),
           ],
-          question: Text('how old are you?'),
-          currentUser: this.user,
-          creatorID: this.creator,
+          question: const Text('how old are you?'),
+          currentUser: user,
+          creatorID: creator,
           voteData: usersWhoVoted,
-          userChoice: usersWhoVoted[this.user],
+          userChoice: usersWhoVoted[user],
           onVoteBackgroundColor: Colors.blue,
           leadingBackgroundColor: Colors.blue,
           backgroundColor: Colors.white,
           onVote: (choice) {
-            print(choice);
             setState(() {
-              this.usersWhoVoted[this.user] = choice;
+              usersWhoVoted[user] = choice;
             });
             if (choice == 1) {
               setState(() {
