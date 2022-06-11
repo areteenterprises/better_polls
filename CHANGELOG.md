@@ -1,3 +1,8 @@
+## 1.0.1
+
+* Fixed deprecated use of LinearStrokeCap.
+* Bumped percent_indicator to 4.2.2.
+
 ## 1.0.0
 
 * Initial release of forked package polls.
