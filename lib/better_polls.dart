@@ -53,12 +53,13 @@ class Polls extends StatefulWidget {
 
   final double optionBarRadius;
 
-  ///colors setting for polls widget
+  /// Colors setting for polls widget
   final Color outlineColor;
   final Color backgroundColor;
   final Color? onVoteBackgroundColor;
   final Color? iconColor;
   final Color? leadingBackgroundColor;
+  final Color? voteCastedBackgroundColor;
 
   /// Polls contruct by default get view for voting
   const Polls({
@@ -73,6 +74,7 @@ class Polls extends StatefulWidget {
     this.onVote,
     this.outlineColor = Colors.blue,
     this.backgroundColor = Colors.blueGrey,
+    this.voteCastedBackgroundColor = Colors.grey,
     this.onVoteBackgroundColor = Colors.blue,
     this.leadingPollStyle,
     this.pollStyle,
@@ -103,6 +105,7 @@ class Polls extends StatefulWidget {
     this.leadingPollStyle,
     this.pollStyle,
     this.backgroundColor = Colors.blue,
+    this.voteCastedBackgroundColor = Colors.grey,
     this.leadingBackgroundColor = Colors.blueAccent,
     this.onVoteBackgroundColor = Colors.blueGrey,
     this.iconColor = Colors.black,
@@ -127,6 +130,7 @@ class Polls extends StatefulWidget {
     this.leadingPollStyle,
     this.pollStyle,
     this.backgroundColor = Colors.blue,
+    this.voteCastedBackgroundColor = Colors.grey,
     this.leadingBackgroundColor = Colors.blueAccent,
     this.onVoteBackgroundColor = Colors.blueGrey,
     this.allowCreatorVote = false,
@@ -152,7 +156,8 @@ class Polls extends StatefulWidget {
     required this.onVote,
     this.allowCreatorVote = false,
     this.outlineColor = Colors.blue,
-    this.backgroundColor = Colors.blueGrey,
+    this.backgroundColor = Colors.grey,
+    this.voteCastedBackgroundColor = Colors.blueGrey,
     this.pollStyle,
     this.optionBarRadius = 16,
   })  : viewType = PollsType.voter,
@@ -184,13 +189,6 @@ class _PollsState extends State<Polls> {
   /// style
   late TextStyle pollStyle;
   late TextStyle leadingPollStyle;
-
-  ///colors setting for polls widget
-  Color? outlineColor;
-  Color? backgroundColor;
-  Color? onVoteBackgroundColor;
-  Color? iconColor;
-  Color? leadingBackgroundColor;
 
   late double highest;
 
@@ -337,6 +335,7 @@ class _PollsState extends State<Polls> {
               margin: const EdgeInsets.fromLTRB(0, 3, 0, 3),
               width: double.infinity,
               child: LinearPercentIndicator(
+                backgroundColor: widget.voteCastedBackgroundColor,
                 padding: EdgeInsets.zero,
                 animation: true,
                 lineHeight: 38.0,
@@ -414,6 +413,7 @@ class _PollsState extends State<Polls> {
               margin: const EdgeInsets.fromLTRB(0, 3, 0, 3),
               width: double.infinity,
               child: LinearPercentIndicator(
+                backgroundColor: widget.voteCastedBackgroundColor,
                 padding: EdgeInsets.zero,
                 barRadius: Radius.circular(widget.optionBarRadius),
                 animation: true,
