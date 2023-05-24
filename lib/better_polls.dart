@@ -11,14 +11,14 @@ typedef PollTotal = void Function(int total);
 late int userPollChoice;
 
 class Polls extends StatefulWidget {
-  /// This takes the question of the poll
-  final Text question;
+  /// The poll question visible above the poll options.
+  final Widget? question;
 
   /// This determines what type of view user should see
   /// if its creator, or view requiring you to vote or view showing your vote
   final PollsType? viewType;
 
-  ///this takes in vote data which should be a Map
+  /// This takes in vote data which should be a Map
   /// with this, polls widget determines what type of view the user should see
   final Map<String, int>? voteData;
 
@@ -26,30 +26,32 @@ class Polls extends StatefulWidget {
 
   final String? creatorID;
 
-  /// this takes in poll options array
+  /// This takes in poll options array
   final List<PollOption> children;
 
-  /// this call back returns user choice after voting
+  /// This call back returns user choice after voting
   final PollCallBack? onVote;
 
-  /// this is takes in current user choice
+  /// This is takes in current user choice
   final int? userChoice;
 
-  /// this determines if the creator of the poll can vote or not
+  /// This determines if the creator of the poll can vote or not
   final bool allowCreatorVote;
 
-  /// this returns total votes casted
+  /// This returns total votes casted
   final PollTotal? getTotal;
 
-  /// this returns highest votes casted
+  /// This returns highest votes casted
   final PollTotal? getHighest;
 
   @protected
   final double? highest;
 
-  /// style
+  /// Text Styles
   final TextStyle? pollStyle;
   final TextStyle? leadingPollStyle;
+
+  final double optionBarRadius;
 
   ///colors setting for polls widget
   final Color outlineColor;
@@ -62,10 +64,10 @@ class Polls extends StatefulWidget {
   const Polls({
     Key? key,
     required this.children,
-    required this.question,
     required this.voteData,
     required this.currentUser,
     required this.creatorID,
+    this.question,
     this.userChoice,
     this.allowCreatorVote = false,
     this.onVote,
@@ -76,6 +78,7 @@ class Polls extends StatefulWidget {
     this.pollStyle,
     this.iconColor = Colors.black,
     this.leadingBackgroundColor = Colors.blueGrey,
+    this.optionBarRadius = 16,
   })  : highest = null,
         getHighest = null,
         getTotal = null,
@@ -103,6 +106,7 @@ class Polls extends StatefulWidget {
     this.leadingBackgroundColor = Colors.blueAccent,
     this.onVoteBackgroundColor = Colors.blueGrey,
     this.iconColor = Colors.black,
+    this.optionBarRadius = 16,
   })  : allowCreatorVote = false,
         getTotal = null,
         highest = null,
@@ -126,6 +130,7 @@ class Polls extends StatefulWidget {
     this.leadingBackgroundColor = Colors.blueAccent,
     this.onVoteBackgroundColor = Colors.blueGrey,
     this.allowCreatorVote = false,
+    this.optionBarRadius = 16,
   })  : viewType = PollsType.creator,
         onVote = null,
         userChoice = null,
@@ -149,6 +154,7 @@ class Polls extends StatefulWidget {
     this.outlineColor = Colors.blue,
     this.backgroundColor = Colors.blueGrey,
     this.pollStyle,
+    this.optionBarRadius = 16,
   })  : viewType = PollsType.voter,
         userChoice = null,
         highest = null,
@@ -165,7 +171,7 @@ class Polls extends StatefulWidget {
         super(key: key);
 
   @override
-  _PollsState createState() => _PollsState();
+  State<Polls> createState() => _PollsState();
 }
 
 class _PollsState extends State<Polls> {
@@ -257,10 +263,7 @@ class _PollsState extends State<Polls> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        widget.question,
-        const SizedBox(
-          height: 12,
-        ),
+        widget.question ?? const SizedBox.shrink(),
         ...widget.children
             .mapIndexed(
               (ind, _) => Container(
@@ -271,7 +274,7 @@ class _PollsState extends State<Polls> {
                   padding: const EdgeInsets.all(0),
                   height: 35,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(widget.optionBarRadius),
                     color: widget.backgroundColor,
                   ),
                   child: OutlinedButton(
@@ -293,7 +296,8 @@ class _PollsState extends State<Polls> {
                       ),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius:
+                              BorderRadius.circular(widget.optionBarRadius),
                         ),
                       ),
                     ),
@@ -325,10 +329,7 @@ class _PollsState extends State<Polls> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        widget.question,
-        const SizedBox(
-          height: 12,
-        ),
+        widget.question ?? const SizedBox.shrink(),
         ...widget.children.mapIndexed(
           (ind, _) {
             bool isHighest = highest == choiceValues[ind];
@@ -340,7 +341,7 @@ class _PollsState extends State<Polls> {
                 animation: true,
                 lineHeight: 38.0,
                 animationDuration: 500,
-                barRadius: const Radius.circular(16),
+                barRadius: Radius.circular(widget.optionBarRadius),
                 percent: PollMath.getPercent(choiceValues, ind),
                 center: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -365,11 +366,10 @@ class _PollsState extends State<Polls> {
                     Row(
                       children: [
                         Text(
-                          PollMath.getMainPercent(
-                                choiceValues,
-                                ind,
-                              ).toString() +
-                              "%",
+                          "${PollMath.getMainPercent(
+                            choiceValues,
+                            ind,
+                          )}%",
                           style: isHighest
                               ? widget.leadingPollStyle
                               : widget.pollStyle,
@@ -406,10 +406,7 @@ class _PollsState extends State<Polls> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        widget.question,
-        const SizedBox(
-          height: 12,
-        ),
+        widget.question ?? const SizedBox.shrink(),
         ...widget.children.mapIndexed(
           (int ind, _) {
             bool isHighest = highest == choiceValues[ind];
@@ -418,7 +415,7 @@ class _PollsState extends State<Polls> {
               width: double.infinity,
               child: LinearPercentIndicator(
                 padding: EdgeInsets.zero,
-                barRadius: const Radius.circular(32),
+                barRadius: Radius.circular(widget.optionBarRadius),
                 animation: true,
                 lineHeight: 38.0,
                 animationDuration: 500,
@@ -447,9 +444,7 @@ class _PollsState extends State<Polls> {
                     Row(
                       children: [
                         Text(
-                          PollMath.getMainPercent(choiceValues, ind)
-                                  .toString() +
-                              "%",
+                          "${PollMath.getMainPercent(choiceValues, ind)}%",
                           style: isHighest
                               ? widget.leadingPollStyle
                               : widget.pollStyle,

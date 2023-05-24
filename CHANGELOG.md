@@ -1,3 +1,11 @@
+## 1.0.3
+
+* Changed poll question to be an optional widget. 
+* Fixed a couple decrecation warnings. 
+* Added option to change default option bar radius. 
+* Updated example. 
+
+
 ## 1.0.2
 
 * Made padding consistent across poll types. 

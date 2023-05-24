@@ -23,7 +23,7 @@ class PollView extends StatefulWidget {
   const PollView({Key key}) : super(key: key);
 
   @override
-  _PollViewState createState() => _PollViewState();
+  State<PollView> createState() => _PollViewState();
 }
 
 class _PollViewState extends State<PollView> {
@@ -49,71 +49,78 @@ class _PollViewState extends State<PollView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Polls(
-          children: [
-            // This cannot be less than 2, else will throw an exception
-            Polls.options(title: 'Cairo', value: option1),
-            Polls.options(title: 'Mecca', value: option2),
-            Polls.options(title: 'Denmark', value: option3),
-            Polls.options(title: 'Mogadishu', value: option4),
-            Polls.options(title: 'Maldives', value: option5),
-            Polls.options(title: 'Brazil', value: option6),
-            Polls.options(title: 'Ethiopia', value: option7),
-            Polls.options(title: 'Italy', value: option8),
-          ],
-          question: const Text('how old are you?'),
-          currentUser: user,
-          creatorID: creator,
-          voteData: usersWhoVoted,
-          userChoice: usersWhoVoted[user],
-          onVoteBackgroundColor: Colors.blue,
-          leadingBackgroundColor: Colors.blue,
-          backgroundColor: Colors.white,
-          onVote: (choice) {
-            setState(() {
-              usersWhoVoted[user] = choice;
-            });
-            if (choice == 1) {
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Polls(
+            children: [
+              // This cannot be less than 2, else will throw an exception
+              Polls.options(title: 'Cairo', value: option1),
+              Polls.options(title: 'Mecca', value: option2),
+              Polls.options(title: 'Denmark', value: option3),
+              Polls.options(title: 'Mogadishu', value: option4),
+              Polls.options(title: 'Maldives', value: option5),
+              Polls.options(title: 'Brazil', value: option6),
+              Polls.options(title: 'Ethiopia', value: option7),
+              Polls.options(title: 'Italy', value: option8),
+            ],
+            optionBarRadius: 24,
+            question: const Padding(
+              padding: EdgeInsets.only(bottom: 16.0),
+              child: Text('What is your favorite place?'),
+            ),
+            currentUser: user,
+            creatorID: creator,
+            voteData: usersWhoVoted,
+            userChoice: usersWhoVoted[user],
+            onVoteBackgroundColor: Colors.blue,
+            leadingBackgroundColor: Colors.blue,
+            backgroundColor: Colors.white,
+            onVote: (choice) {
               setState(() {
-                option1 += 1.0;
+                usersWhoVoted[user] = choice;
               });
-            }
-            if (choice == 2) {
-              setState(() {
-                option2 += 1.0;
-              });
-            }
-            if (choice == 3) {
-              setState(() {
-                option3 += 1.0;
-              });
-            }
-            if (choice == 4) {
-              setState(() {
-                option4 += 1.0;
-              });
-            }
-            if (choice == 5) {
-              setState(() {
-                option5 += 1.0;
-              });
-            }
-            if (choice == 6) {
-              setState(() {
-                option6 += 1.0;
-              });
-            }
-            if (choice == 7) {
-              setState(() {
-                option7 += 1.0;
-              });
-            }
-            if (choice == 8) {
-              setState(() {
-                option8 += 1.0;
-              });
-            }
-          },
+              if (choice == 1) {
+                setState(() {
+                  option1 += 1.0;
+                });
+              }
+              if (choice == 2) {
+                setState(() {
+                  option2 += 1.0;
+                });
+              }
+              if (choice == 3) {
+                setState(() {
+                  option3 += 1.0;
+                });
+              }
+              if (choice == 4) {
+                setState(() {
+                  option4 += 1.0;
+                });
+              }
+              if (choice == 5) {
+                setState(() {
+                  option5 += 1.0;
+                });
+              }
+              if (choice == 6) {
+                setState(() {
+                  option6 += 1.0;
+                });
+              }
+              if (choice == 7) {
+                setState(() {
+                  option7 += 1.0;
+                });
+              }
+              if (choice == 8) {
+                setState(() {
+                  option8 += 1.0;
+                });
+              }
+            },
+          ),
         ),
       ),
     );
