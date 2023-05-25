@@ -1,5 +1,5 @@
 name: better_polls
-description: A better flutter widget for polls updated for Flutter 3, this immitates the twitter polls system, all you need do is connect you data to the polls, it allows voting and visualization.
+description: A better flutter widget for polls, this immitates the twitter polls system, all you need do is connect you data to the polls, it allows voting and visualization.
 version: 1.0.5
 homepage: https://github.com/tjcampanella/better_polls
 
