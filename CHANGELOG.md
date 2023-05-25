@@ -1,3 +1,11 @@
+## 1.0.5
+
+* When a vote is cast it will count that vote in the percentage calculations and show the animation accordingly. 
+
+## 1.0.4
+
+* Added option to change the background color of the options when a vote is cast. 
+
 ## 1.0.3
 
 * Changed poll question to be an optional widget. 

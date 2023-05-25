@@ -31,9 +31,9 @@ class _PollViewState extends State<PollView> {
   double option2 = 0.0;
   double option3 = 1.0;
   double option4 = 1.0;
-  double option5 = 1.0;
+  double option5 = 7.0;
   double option6 = 3.0;
-  double option7 = 2.0;
+  double option7 = 17.0;
   double option8 = 1.0;
 
   String user = "king@mail.com";

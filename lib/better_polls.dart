@@ -279,6 +279,7 @@ class _PollsState extends State<Polls> {
                     onPressed: () {
                       setState(() {
                         userPollChoice = ind;
+                        choiceValues[ind] += 1;
                       });
                       widget.onVote!(userPollChoice);
                     },
@@ -494,7 +495,7 @@ class PollMath {
     double div = choiceValues.sum == 0
         ? 0
         : (100 / choiceValues.sum) * choiceValues[choice];
-    return div == 0 ? 0 : div.round().toDouble();
+    return div == 0 ? 0 : double.parse(div.toStringAsFixed(1));
   }
 
   static double getPercent(List<double> choiceValues, int choice) {
